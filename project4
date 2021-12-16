@@ -1,0 +1,15 @@
+#this is my 4th project 
+#this for Until loop program 
+#!/bin/bash
+
+echo -e "enter the value" 
+read -r c
+echo "****************************************"
+i=0
+until [ $i -ge 10 ];
+do 
+B=`expr $c + $i`
+echo "$c+$i=$B"
+i=`expr $i + 1`
+done
+
