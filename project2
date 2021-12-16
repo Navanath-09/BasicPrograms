@@ -1,0 +1,14 @@
+#this is my second project 
+#this for loop program 
+#!/bin/bash
+
+echo -e "enter the value" 
+read -r c
+echo "****************************************"
+
+for ((i=0; i<=10; i++))
+
+do 
+B=`expr $c + $i`
+echo "$c+$i=$B"
+done
