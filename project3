@@ -1,0 +1,17 @@
+#this is my 3rd project 
+#this for Nested loop program 
+#!/bin/bash
+
+#echo -e "enter the value" 
+#read -r c
+echo "****************************************"
+
+for ((i=1; i<=10; i++))
+
+do 
+    for ((j=1; j<=i; j++))
+         do
+                echo -n  "*"
+         done
+  echo ""
+done
