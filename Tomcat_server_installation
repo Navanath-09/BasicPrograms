@@ -1,0 +1,74 @@
+pipeline{
+        agent {
+                label {
+                       label 'JNLP'
+                       customWorkspace "/home/ec2-user"
+                }
+        }
+        stages {
+                stage (make_Directory) {
+                    steps {
+                        sh "mkdir Tomcat"
+                    }
+                }
+                stage (open_directory) {
+                    steps {
+                        sh "cd Tomcat"
+                    }
+                }
+               
+                stage (download_Tomcat) {
+                    steps {
+                        dir ("/home/ec2-user/Tomcat") {
+                            sh "wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.56/bin/apache-tomcat-9.0.56.zip"
+                            
+                    }
+                    }
+                }
+                
+                stage (unzip_the_Tomcat) {
+                    steps {
+                        dir ("/home/ec2-user/Tomcat") {
+                            sh "unzip apache-tomcat-9.0.56.zip"
+                        }
+                    }
+                }
+                stage (delete_zipfile) {
+                    steps {
+                        dir ("/home/ec2-user/Tomcat") {
+                            sh "rm -rf apache-tomcat-9.0.56.zip"
+                        }
+                    }
+                }
+                
+                stage (download_jenkins) {
+                    steps {
+                        dir ("/home/ec2-user/Tomcat/apache-tomcat-9.0.56/webapps") {
+                            sh "wget https://get.jenkins.io/war-stable/2.319.1/jenkins.war" 
+                        }
+                    }
+                }
+                stage (change_mode_bin) {
+                    steps {
+                        dir ("/home/ec2-user/Tomcat/apache-tomcat-9.0.56") {
+                            sh "chmod -R 777 bin"
+                        }
+                    }
+                }
+                stage (start_tomcat) {
+                    steps {
+                        dir ("/home/ec2-user/Tomcat/apache-tomcat-9.0.56/bin") {
+                            sh "./startup.sh"
+                        }
+                    }
+                }
+                stage (jenkins_password) {
+                    steps {
+                        sh "cat /root/.jenkins/secrets/initialAdminPassword"
+                    }
+                }
+                
+        }
+}
+
+
