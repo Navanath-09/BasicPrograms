@@ -1,7 +1,7 @@
 pipeline{
         agent {
                 label {
-                       label 'node1'
+                       label 'node2'
                        customWorkspace "/home/ec2-user/salve"
                 }
         }
