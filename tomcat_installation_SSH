@@ -45,6 +45,7 @@ pipeline{
                 stage (change_mode_bin) {
                     steps {
                         dir ("/home/ec2-user/salve/Tomcat/apache-tomcat-9.0.56/") {
+                        sh "sleep 5"
                             sh "sudo chmod -R 777 bin"
                         }
                     }
