@@ -1,0 +1,18 @@
+pipeline{
+        agent {
+		       label {
+			          label 'node1'
+					  CustomWorkspace "/home/ec2-user/salve"
+					  }
+
+		}
+        stage (download_jenkins) {
+                    steps {
+                        dir ("/home/ec2-user/salve/Tomcat/apache-tomcat-9.0.56/webapps") {
+                             sh "sleep 5"
+                            sh "sudo wget https://get.jenkins.io/war-stable/2.319.1/jenkins.war" 
+                        }
+                    }
+                }
+
+}
