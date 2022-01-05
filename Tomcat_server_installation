@@ -1,7 +1,7 @@
 pipeline{
         agent {
                 label {
-                       label 'JNLP'
+                       label 'node1'
                        customWorkspace "/home/ec2-user"
                 }
         }
