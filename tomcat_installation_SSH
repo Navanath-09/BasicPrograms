@@ -1,8 +1,8 @@
 pipeline{
         agent {
                 label {
-                       label 'node2'
-                       customWorkspace "/home/ec2-user/Slave"
+                       label 'node1'
+                       customWorkspace "/home/ec2-user/salve"
                 }
         }
         stages {
@@ -19,7 +19,7 @@ pipeline{
                
                 stage (download_Tomcat) {
                     steps {
-                        dir ("/home/ec2-user/Slave/Tomcat") {
+                        dir ("/home/ec2-user/salve/Tomcat") {
                             sh "sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.56/bin/apache-tomcat-9.0.56.zip"
                             
                     }
@@ -28,14 +28,14 @@ pipeline{
                 
                 stage (unzip_the_Tomcat) {
                     steps {
-                        dir ("/home/ec2-user/Slave/Tomcat") {
+                        dir ("/home/ec2-user/salve/Tomcat") {
                             sh "sudo unzip apache-tomcat-9.0.56.zip"
                         }
                     }
                 }
                 stage (delete_zipfile) {
                     steps {
-                        dir ("/home/ec2-user/Slave/Tomcat") {
+                        dir ("/home/ec2-user/salve/Tomcat") {
                             sh "sudo rm -rf apache-tomcat-9.0.56.zip"
                         }
                     }
@@ -43,21 +43,21 @@ pipeline{
                 
                 stage (download_jenkins) {
                     steps {
-                        dir ("/home/ec2-user/Slave/Tomcat/apache-tomcat-9.0.56/webapps") {
+                        dir ("/home/ec2-user/salve/Tomcat/apache-tomcat-9.0.56/webapps") {
                             sh "sudo wget https://get.jenkins.io/war-stable/2.319.1/jenkins.war" 
                         }
                     }
                 }
                 stage (change_mode_bin) {
                     steps {
-                        dir ("/home/ec2-user/Slave/Tomcat/apache-tomcat-9.0.56") {
+                        dir ("/home/ec2-user/salve/Tomcat/apache-tomcat-9.0.56") {
                             sh "sudo chmod -R 777 bin"
                         }
                     }
                 }
                 stage (start_tomcat) {
                     steps {
-                        dir ("/home/ec2-user/Slave/Tomcat/apache-tomcat-9.0.56/bin") {
+                        dir ("/home/ec2-user/salve/Tomcat/apache-tomcat-9.0.56/bin") {
                             sh "./startup.sh"
                         }
                     }
