@@ -24,7 +24,7 @@ pipeline {
         }
 		stage('deploy_on_server') {
             steps {
-               sh "echo 'hello navanath successfully deploy on server' >> index.html"
+               sh "echo '2nd time change hello navanath successfully deploy on server' >> index.html"
                sh "sudo cp -r index.html /var/www/html/"
 			
             }
