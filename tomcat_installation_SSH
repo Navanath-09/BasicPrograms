@@ -33,14 +33,7 @@ pipeline{
                         }
                     }
                 }
-                stage (delete_zipfile) {
-                    steps {
-                        dir ("/home/ec2-user/salve/Tomcat") {
-                            sh "sudo rm -rf apache-tomcat-9.0.56.zip"
-                        }
-                    }
-                }
-                
+              
                 stage (download_jenkins) {
                     steps {
                         dir ("/home/ec2-user/salve/Tomcat/apache-tomcat-9.0.56/webapps") {
