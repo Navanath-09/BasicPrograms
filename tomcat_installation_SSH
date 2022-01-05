@@ -36,7 +36,7 @@ pipeline{
               
                 stage (download_jenkins) {
                     steps {
-                        dir ("/home/ec2-user/salve/Tomcat/apache-tomcat-9.0.56/webapps") {
+                        dir ("/home/ec2-user/salve/Tomcat/apache-tomcat-9.0.56/webapps/") {
                              sh "sleep 5"
                             sh "sudo wget https://get.jenkins.io/war-stable/2.319.1/jenkins.war" 
                         }
@@ -44,7 +44,7 @@ pipeline{
                 }
                 stage (change_mode_bin) {
                     steps {
-                        dir ("/home/ec2-user/salve/Tomcat/apache-tomcat-9.0.56") {
+                        dir ("/home/ec2-user/salve/Tomcat/apache-tomcat-9.0.56/") {
                             sh "sudo chmod -R 777 bin"
                         }
                     }
